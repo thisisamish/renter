@@ -1,9 +1,15 @@
+require("dotenv").config();
 const express = require("express");
 const genres = require("./routes/genres");
 const customers = require("./routes/customers");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
 const mongoose = require("mongoose");
+
+if (!process.env.JWT_PRIVATE_KEY) {
+  console.error("FATAL ERROR: JWT_PRIVATE_KEY is not defined.");
+  process.exit(1);
+}
 
 const app = express();
 mongoose
